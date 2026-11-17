@@ -1,0 +1,418 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+/* =========================
+   ROOT & RESET
+========================= */
+
+:root {
+    --bg: #050711;
+    --panel: #0b1020;
+    --cyan: #00f5ff;
+    --purple: #9b5cff;
+    --pink: #ff00c8;
+    --white: #f1f5f9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Vazirmatn', sans-serif;
+
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(0, 245, 255, .12), transparent 40%),
+        radial-gradient(ellipse at 85% 85%, rgba(155, 92, 255, .15), transparent 40%),
+        var(--bg);
+
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+/* =========================
+   CYBER GRID
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
+        linear-gradient(rgba(0,245,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,.045) 1px, transparent 1px);
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 15%,
+        black 85%,
+        transparent
+    );
+
+    animation: gridMove 20s linear infinite;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: min(100%, 900px);
+    min-height: 520px;
+
+    padding: 55px 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    position: relative;
+    isolation: isolate;
+
+    background: linear-gradient(
+        145deg,
+        rgba(14, 22, 43, .96),
+        rgba(5, 8, 22, .98)
+    );
+
+    border: 1px solid rgba(0,245,255,.22);
+    border-radius: 24px;
+
+    box-shadow:
+        0 0 25px rgba(0,245,255,.08),
+        0 30px 90px rgba(0,0,0,.55),
+        inset 0 0 50px rgba(0,245,255,.025);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation: containerEnter .9s ease both;
+
+    transition: box-shadow .4s ease;
+}
+
+/* Neon border */
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+
+    padding: 1px;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        135deg,
+        var(--cyan),
+        transparent 30%,
+        transparent 70%,
+        var(--purple)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+.input {
+    flex: 1 1 230px;
+    min-width: 0;
+    max-width: 400px;
+    height: 58px;
+
+    padding: 0 20px;
+
+    background: rgba(0,245,255,.035);
+
+    border: 1px solid rgba(0,245,255,.25);
+    border-radius: 10px;
+
+    outline: none;
+
+    color: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+
+    direction: rtl;
+
+    box-shadow: inset 0 0 15px rgba(0,245,255,.025);
+
+    transition: .3s ease;
+}
+
+.input::placeholder {
+    color: rgba(200,220,235,.45);
+}
+
+.input:hover {
+    border-color: rgba(0,245,255,.6);
+}
+
+.input:focus {
+    border-color: var(--cyan);
+
+    background: rgba(0,245,255,.07);
+
+    box-shadow:
+        0 0 0 3px rgba(0,245,255,.08),
+        0 0 25px rgba(0,245,255,.12);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    flex: 0 0 auto;
+    height: 58px;
+
+    padding: 0 30px;
+
+    border: 1px solid var(--cyan);
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #00e5f5,
+        #00a5c8
+    );
+
+    color: #031019;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    box-shadow:
+        0 0 15px rgba(0,245,255,.3),
+        0 0 35px rgba(0,245,255,.1);
+
+    transition: .3s ease;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+
+    top: -100%;
+    left: -80%;
+
+    width: 40%;
+    height: 300%;
+
+    background: rgba(255,255,255,.6);
+
+    transform: rotate(30deg);
+
+    transition: left .6s ease;
+}
+
+.btn:hover::before {
+    left: 150%;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 20px rgba(0,245,255,.6),
+        0 0 45px rgba(0,245,255,.25);
+}
+
+.btn:active {
+    transform: scale(.95);
+}
+
+.btn:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 5px;
+}
+
+/* =========================
+   IMAGE RESPONSIVE
+========================= */
+
+.img {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    flex: 1 1 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    max-height: 400px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0,245,255,.18))
+        drop-shadow(0 15px 25px rgba(0,0,0,.4));
+
+    animation: imageEnter 1.2s ease both;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.img:hover {
+    transform: scale(1.035);
+
+    filter:
+        drop-shadow(0 0 20px rgba(0,245,255,.35))
+        drop-shadow(0 20px 30px rgba(0,0,0,.5));
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes gridMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 45px 45px;
+    }
+}
+
+@keyframes containerEnter {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.96);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes imageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 35px 25px;
+        min-height: 420px;
+        gap: 16px;
+    }
+
+    .img {
+        max-height: 320px;
+    }
+
+    .input {
+        max-width: none;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+    body {
+        padding: 16px;
+    }
+
+    .container {
+        padding: 30px 20px;
+        border-radius: 18px;
+        gap: 14px;
+    }
+
+    .input,
+    .btn {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .img {
+        max-height: 240px;
+    }
+}
+
+/* =========================
+   SMALL SCREENS
+========================= */
+
+@media (max-width: 350px) {
+    .container {
+        padding: 22px 14px;
+    }
+
+    .input,
+    .btn {
+        height: 52px;
+        font-size: 14px;
+    }
+
+    .img {
+        max-height: 190px;
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
